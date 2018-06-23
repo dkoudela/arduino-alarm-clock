@@ -38,6 +38,15 @@ void setup () {
 void loop () {
   // načtení aktuálního času a data do proměnné datumCas
   DateTime datumCas = DS1307.now();
+
+  consoleDateTime(datumCas);
+  displayDateTime(datumCas);
+
+  // pauza mezi výpisy
+  delay(1000);
+}
+
+void consoleDateTime(DateTime datumCas) {
   // vypsání informací o aktuálním času a datu po sériové lince
   Serial.print("Aktualni cas ");
   Serial.print(datumCas.hour());
@@ -54,11 +63,6 @@ void loop () {
   Serial.print('.');
   Serial.print(datumCas.year());
   Serial.println();
-
-  displayDateTime(datumCas);
-  
-  // pauza mezi výpisy
-  delay(1000);
 }
 
 void displayDateTime(DateTime dateTime) {
@@ -71,7 +75,7 @@ void displayDateTime(DateTime dateTime) {
   lcd.print('.');
   lcd.print(dateTime.year());
 
-  lcd.setCursor(4,2);   // set the cursor to column 0, line 2 
+  lcd.setCursor(4,1);   // set the cursor to column 0, line 1 
   lcd.print(dateTime.hour());
   lcd.print(':');
   lcd.print(dateTime.minute());
